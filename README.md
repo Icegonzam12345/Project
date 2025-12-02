@@ -1,2 +1,18 @@
-# Project
-Project
+board size: 20x20 matrix
+walls: "#"
+snake body: "*"
+snake head: "X"
+apples: "+"
+example:
+
+####################
+#              +   #
+#                  # 
+#        ***       # 
+#          *       #
+#   +      X       # 
+#                  # 
+#          +       #  
+#                  # 
+#                  # 
+####################

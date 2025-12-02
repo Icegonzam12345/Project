@@ -1,30 +1,45 @@
 #include <stdio.h>
 #include <ncurses.h>
+#include <stdlib.h>
+#include <time.h>
 
-#define rows 20;
-#define cols 20;
+#define ROWS 20
+#define COLS 20
 
-char world[rows][cols];
+char world[ROWS][COLS];
 
-void initalworld(void){
-    for(int r = 0; r < rows; r++){
-        for(int c = 0; c < cols; c++){
-             if(r == 0 || r == rows - 1 || c == 0 || c == cols - 1){
-                world[r][c] = '#';
+void inital_world(void){
+    for(int r = 0; r < ROWS; r++){
+        for(int c = 0; c < COLS; c++){
+            if(r == 0 || r == ROWS - 1 || c == 0 || c == COLS - 1){
+                world[r][c] = '#'; //walls
             } else {
-                world[r][c] = ' ';
+                world[r][c] = ' '; //empty space for game area
+            }
+        }
+    }
+}
+void draw_world(void){
+    for(int r = 0; r < ROWS; r++){
+        for(int c = 0; c < COLS; c++){
+            mvaddch(r, c, world[r][c]);
         }
     }
 }
 
 
 
+int main(void){
+   initscr();
+   noecho();
+   curs_set(0);
 
+   inital_world();
+   draw_world();
 
+   refresh();
+   getch();
 
-
-
-
-int main(int argv, char **argc) {
-
+   endwin();
+   return 0;
 }

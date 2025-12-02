@@ -1,12 +1,20 @@
 #include <stdio.h>
 #include <ncurses.h>
-#include <stdlib.h>
-#include <time.h>
 
 #define ROWS 20
 #define COLS 20
+#define MAX_SNAKE_LENGTH (ROWS * COLS)
 
 char world[ROWS][COLS];
+
+struct Segment{
+    int y;
+    int x;
+} 
+
+struct Segment snake[MAX_SNAKE_LENGTH];
+int snake_length;
+
 
 void inital_world(void){
     for(int r = 0; r < ROWS; r++){
@@ -25,6 +33,14 @@ void draw_world(void){
             mvaddch(r, c, world[r][c]);
         }
     }
+}
+
+void inital_snake(void){
+    snake_length = 3; //starting length
+
+    int start_y = ROWS / 2; //snake starting position (middle of board)
+    int start_x = COLS / 2;
+
 }
 
 

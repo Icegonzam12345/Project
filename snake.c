@@ -1,26 +1,26 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <ncurses.h>
+#include <stdio.h> 
+#include <stdlib.h> //for rand() (srand(time(NULL));)
+#include <time.h> //for seeding rand()
+#include <ncurses.h> //for terminal graphics
 
 #define ROWS 20
 #define COLS 20
-#define MAX_SNAKE_LENGTH (ROWS * COLS)
+#define MAX_SNAKE_LENGTH (ROWS * COLS) //maximum snake length
 
-char world[ROWS][COLS];
+char world[ROWS][COLS]; //game world array
 
-struct Segment{
+struct Segment{ //snake segment structure
     int y;
     int x;
 };
 
-struct Segment snake[MAX_SNAKE_LENGTH];
-int snake_length;
+struct Segment snake[MAX_SNAKE_LENGTH]; //snake segments
+int snake_length; //current length of the snake
 
-int apple_y = -1;
-int apple_x = -1;
+int apple_y = -1; //apple position
+int apple_x = -1; //apple position
 
-void inital_world(void){
+void inital_world(void){ //initialize game world with walls
     for(int r = 0; r < ROWS; r++){
         for(int c = 0; c < COLS; c++){
             if(r == 0 || r == ROWS - 1 || c == 0 || c == COLS - 1){
@@ -31,7 +31,7 @@ void inital_world(void){
         }
     }
 }
-void draw_world(void){
+void draw_world(void){ //draw the world to the screen
     for(int r = 0; r < ROWS; r++){
         for(int c = 0; c < COLS; c++){
             mvaddch(r, c, world[r][c]);
@@ -39,7 +39,7 @@ void draw_world(void){
     }
 }
 
-void inital_snake(void){
+void inital_snake(void){ //initialize snake in the middle of the world
     snake_length = 3; //starting length
 
     int start_y = ROWS / 2; //snake starting position (middle of board)
@@ -56,7 +56,7 @@ void inital_snake(void){
     }
 }
 
-void place_apple(void){
+void place_apple(void){ //place apple at random position
     while(1){
         int y = rand() % (ROWS - 2) + 1; //random position within walls
         int x = rand() % (COLS - 2) + 1;
@@ -70,7 +70,7 @@ void place_apple(void){
     }
 }
 
-void redraw_world(void){
+void redraw_world(void){ //clear and redraw the world
     for(int r = 1; r < ROWS - 1; r++){
         for(int c = 1; c < COLS - 1; c++){
             world[r][c] = ' '; //clear game area
@@ -90,11 +90,11 @@ void redraw_world(void){
 int main(void){
    srand(time(NULL));
 
-   initscr();
-   noecho();
-   curs_set(0);
-   keypad(stdscr, TRUE);
-   nodelay(stdscr, TRUE);
+   initscr(); //initialize ncurses
+   noecho(); //do not print input characters
+   curs_set(0); //hide cursor
+   keypad(stdscr, TRUE); //enable arrow keys
+   nodelay(stdscr, TRUE); //make getch() non-blocking
 
    inital_world();
    inital_snake();

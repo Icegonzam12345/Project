@@ -171,4 +171,3 @@ int main(void){
     endwin();
     return 0;
 }
- 

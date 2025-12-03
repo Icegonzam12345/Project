@@ -30,6 +30,9 @@ keypad(stdscr, TRUE) to enable arrow keys
 nodelay(stdscr, TRUE) for nonblocking input
 napms(120) to control the snake’s speed
 
+noechoe() -> makes it so the user inputs aren't drawn onto the game area (from curse library)
+srand(time(NULL)) -> spawns apples at random location
+
 
 
 How to compile:

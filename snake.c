@@ -134,7 +134,7 @@ int main(void){
    int new_y = snake[0].y + dir_y; // new head position
    int new_x = snake[0].x + dir_x; // new head position
 
-   if(world[new_y][new_x] == '#' ){
+   if(world[new_y][new_x] == '#' || world[new_y][new_x] == '*'){
        game_over = 1; //hit wall
        continue;
    }

@@ -135,7 +135,7 @@ int main(void){
    int new_x = snake[0].x + dir_x; // new head position
 
    if(world[new_y][new_x] == '#' || world[new_y][new_x] == '*'){
-       game_over = 1; //hit wall
+       game_over = 1; //hit wall or self
        continue;
    }
    int ate_apple = (world[new_y][new_x] == '@');
